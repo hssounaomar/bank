@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #323030;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXButton buttonType="RAISED" layoutX="169.0" layoutY="98.0" prefHeight="46.0" prefWidth="262.0" style="-fx-background-color: #09edc7;" text="Gérer les comptes">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="169.0" layoutY="236.0" prefHeight="46.0" prefWidth="262.0" style="-fx-background-color: #09edc7;" text="Gérer les transactions">
+         <font>
+            <Font name="Arial Bold Italic" size="15.0" />
+         </font>
+      </JFXButton>
+   </children>
+</Pane>

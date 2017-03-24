@@ -76,14 +76,13 @@ public class LoginController implements Initializable {
             content.setBackground(new Background(new BackgroundFill(Color.GRAY, null, null)));
 
             content.setHeading(new Text("Votre Champs sont faux"));
-           Text text =new Text("Il faut repeter la connexion vos champs sont faux.");
-           text.setFill(Color.RED);
-           
+            Text text = new Text("Il faut repeter la connexion vos champs sont faux.");
+            text.setFill(Color.RED);
 
             content.setBody(text);
-            JFXDialog dialog = new JFXDialog(stackPane,content, JFXDialog.DialogTransition.CENTER);
-            JFXButton button =new JFXButton("OK");
-button.setOnAction(new EventHandler<ActionEvent>() {
+            JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.CENTER);
+            JFXButton button = new JFXButton("OK");
+            button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     dialog.close();
@@ -91,7 +90,6 @@ button.setOnAction(new EventHandler<ActionEvent>() {
             });
             content.setActions(button);
 
-          
             dialog.show();
 
         } catch (IOException ioe) {

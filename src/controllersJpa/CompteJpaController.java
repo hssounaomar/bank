@@ -5,6 +5,7 @@
  */
 package controllersJpa;
 
+
 import bank.exceptions.IllegalOrphanException;
 import bank.exceptions.NonexistentEntityException;
 import entites.Compte;
@@ -85,79 +86,18 @@ public class CompteJpaController implements Serializable {
     }
 
     public void edit(Compte compte) throws IllegalOrphanException, NonexistentEntityException, Exception {
-        EntityManager em = null;
+       EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Compte persistentCompte = em.find(Compte.class, compte.getId());
-            List<Transaction> transactionListOld = persistentCompte.getTransactionList();
-            List<Transaction> transactionListNew = compte.getTransactionList();
-            List<Transaction> transactionList1Old = persistentCompte.getTransactionList1();
-            List<Transaction> transactionList1New = compte.getTransactionList1();
-            List<String> illegalOrphanMessages = null;
-            for (Transaction transactionListOldTransaction : transactionListOld) {
-                if (!transactionListNew.contains(transactionListOldTransaction)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain Transaction " + transactionListOldTransaction + " since its numE field is not nullable.");
-                }
-            }
-            for (Transaction transactionList1OldTransaction : transactionList1Old) {
-                if (!transactionList1New.contains(transactionList1OldTransaction)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain Transaction " + transactionList1OldTransaction + " since its numR field is not nullable.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            List<Transaction> attachedTransactionListNew = new ArrayList<Transaction>();
-            for (Transaction transactionListNewTransactionToAttach : transactionListNew) {
-                transactionListNewTransactionToAttach = em.getReference(transactionListNewTransactionToAttach.getClass(), transactionListNewTransactionToAttach.getId());
-                attachedTransactionListNew.add(transactionListNewTransactionToAttach);
-            }
-            transactionListNew = attachedTransactionListNew;
-            compte.setTransactionList(transactionListNew);
-            List<Transaction> attachedTransactionList1New = new ArrayList<Transaction>();
-            for (Transaction transactionList1NewTransactionToAttach : transactionList1New) {
-                transactionList1NewTransactionToAttach = em.getReference(transactionList1NewTransactionToAttach.getClass(), transactionList1NewTransactionToAttach.getId());
-                attachedTransactionList1New.add(transactionList1NewTransactionToAttach);
-            }
-            transactionList1New = attachedTransactionList1New;
-            compte.setTransactionList1(transactionList1New);
             compte = em.merge(compte);
-            for (Transaction transactionListNewTransaction : transactionListNew) {
-                if (!transactionListOld.contains(transactionListNewTransaction)) {
-                    Compte oldNumEOfTransactionListNewTransaction = transactionListNewTransaction.getNumE();
-                    transactionListNewTransaction.setNumE(compte);
-                    transactionListNewTransaction = em.merge(transactionListNewTransaction);
-                    if (oldNumEOfTransactionListNewTransaction != null && !oldNumEOfTransactionListNewTransaction.equals(compte)) {
-                        oldNumEOfTransactionListNewTransaction.getTransactionList().remove(transactionListNewTransaction);
-                        oldNumEOfTransactionListNewTransaction = em.merge(oldNumEOfTransactionListNewTransaction);
-                    }
-                }
-            }
-            for (Transaction transactionList1NewTransaction : transactionList1New) {
-                if (!transactionList1Old.contains(transactionList1NewTransaction)) {
-                    Compte oldNumROfTransactionList1NewTransaction = transactionList1NewTransaction.getNumR();
-                    transactionList1NewTransaction.setNumR(compte);
-                    transactionList1NewTransaction = em.merge(transactionList1NewTransaction);
-                    if (oldNumROfTransactionList1NewTransaction != null && !oldNumROfTransactionList1NewTransaction.equals(compte)) {
-                        oldNumROfTransactionList1NewTransaction.getTransactionList1().remove(transactionList1NewTransaction);
-                        oldNumROfTransactionList1NewTransaction = em.merge(oldNumROfTransactionList1NewTransaction);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
                 Integer id = compte.getId();
                 if (findCompte(id) == null) {
-                    throw new NonexistentEntityException("The compte with id " + id + " no longer exists.");
+                    throw new NonexistentEntityException("The Compte with Num " + id + " no longer exists.");
                 }
             }
             throw ex;

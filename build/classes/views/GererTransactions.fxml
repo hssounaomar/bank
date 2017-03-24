@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="714.0" style="-fx-background-color: #323030;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.GererTransactionsController">
+   <children>
+      <JFXButton fx:id="btn_ajouter" layoutX="268.0" layoutY="88.0" prefHeight="33.0" prefWidth="166.0" style="-fx-background-color: #09edc7;" text="Ajouter de l'argent" />
+      <JFXButton fx:id="btn_retirer" layoutX="268.0" layoutY="180.0" prefHeight="33.0" prefWidth="166.0" style="-fx-background-color: #09edc7;" text="Retirer de l'argent" />
+      <JFXButton fx:id="btn_virer" layoutX="268.0" layoutY="270.0" prefHeight="33.0" prefWidth="166.0" style="-fx-background-color: #09edc7;" text="Virer de l'argent" />
+      <JFXButton fx:id="btn_consulter" layoutX="268.0" layoutY="362.0" onAction="#consulter" prefHeight="33.0" prefWidth="166.0" style="-fx-background-color: #09edc7;" text="Consulter mon compte" />
+   </children>
+</Pane>

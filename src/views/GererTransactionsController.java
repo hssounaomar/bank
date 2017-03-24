@@ -22,34 +22,28 @@ import javafx.stage.Stage;
  *
  * @author Ideal-Info
  */
-public class MenuController implements Initializable {
+public class GererTransactionsController implements Initializable {
 
     @FXML
-    private JFXButton btn_compte;
+    private JFXButton btn_ajouter;
     @FXML
-    private JFXButton btn_transaction;
+    private JFXButton btn_retirer;
+    @FXML
+    private JFXButton btn_virer;
+    @FXML
+    private JFXButton btn_consulter;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        // TODO
     }    
-    @FXML
-    public  void gererComptes(ActionEvent e) throws IOException{
-        Stage primaryStage = new Stage();
-            FXMLLoader loader = new FXMLLoader();
-            Pane root = loader.load(this.getClass().getResource("GererComptes.fxml").openStream());
-
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-    }
-     public void consulter(ActionEvent e) throws IOException{
+    public void consulter(ActionEvent e) throws IOException{
           Stage primaryStage = new Stage();
             FXMLLoader loader = new FXMLLoader();
-            Pane root = loader.load(this.getClass().getResource("GererTransactions.fxml").openStream());
+            Pane root = loader.load(this.getClass().getResource("Consultations.fxml").openStream());
 
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
